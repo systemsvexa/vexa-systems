@@ -1,8 +1,12 @@
+#about {
+  background-color: var(--color-bg-light);
+}
+
 .about-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .about-text p {
@@ -30,12 +34,11 @@
   gap: 1rem;
   padding: 1rem;
   margin-bottom: 1rem;
-  border-radius: 12px;
+  border-radius: 0;
   background: var(--color-bg-card);
   border: 1px solid rgba(0, 0, 0, 0.05);
   transition: var(--transition-normal);
-  text-decoration: none;
-  cursor: pointer;
+  justify-content: space-between;
 }
 
 .founder-item:hover {
@@ -48,9 +51,9 @@
 .founder-photo-placeholder {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, rgba(0, 119, 255, 0.1), rgba(0, 212, 255, 0.05));
+  background: linear-gradient(135deg, rgba(0, 180, 255, 0.1), rgba(0, 212, 255, 0.05));
   border-radius: 50%;
-  border: 2px dashed rgba(0, 119, 255, 0.4);
+  border: 2px solid var(--color-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,6 +84,7 @@
 .founder-info {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .founder-name {
@@ -90,8 +94,55 @@
 }
 
 .founder-role {
-  color: var(--color-primary-light);
+  color: var(--color-secondary);
   font-size: 0.9rem;
+}
+
+.founder-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.founder-mail-btn {
+  background: var(--color-bg-dark);
+  color: var(--color-secondary);
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: var(--transition-fast);
+  border: 1px solid var(--color-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.founder-mail-btn:hover {
+  background: var(--color-secondary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.founder-linkedin-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--color-bg-dark);
+  color: #0a66c2; /* LinkedIn brand color */
+  border-radius: 0;
+  border: 1px solid rgba(10, 102, 194, 0.2);
+  transition: var(--transition-fast);
+  text-decoration: none;
+}
+
+.founder-linkedin-btn:hover {
+  background: #0a66c2;
+  color: white;
+  transform: translateY(-2px);
 }
 
 .about-image {
@@ -101,7 +152,7 @@
 .about-img-placeholder {
   width: 100%;
   height: 500px;
-  border-radius: 20px;
+  border-radius: 0;
   background: linear-gradient(135deg, var(--color-bg-card), #0d1a38);
   display: flex;
   align-items: center;
@@ -134,5 +185,61 @@
   }
   .about-img-placeholder {
     height: 400px;
+  }
+}
+
+.team-photo-container {
+  width: 75%;
+  max-width: 800px;
+  margin: 3rem auto 0;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-normal);
+  border: 2px solid rgba(0, 180, 255, 0.1);
+  background: var(--color-bg-card);
+}
+
+.team-photo-container:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-secondary);
+  box-shadow: 0 10px 30px rgba(0, 180, 255, 0.15);
+}
+
+.team-photo-img {
+  width: 100%;
+  height: 550px;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.team-photo-container:hover .team-photo-img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 992px) {
+  .team-photo-img {
+    height: 400px;
+  }
+}
+
+@media (max-width: 576px) {
+  .founder-item {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+  .founder-info {
+    align-items: center;
+  }
+  .founder-actions {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+  .team-photo-img {
+    height: 250px;
   }
 }

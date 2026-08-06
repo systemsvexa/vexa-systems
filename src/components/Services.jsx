@@ -11,50 +11,98 @@ const SettingsIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="28" he
 const servicesData = [
   {
     icon: <CartIcon />,
-    title: 'E-commerce Premium',
-    description: 'Tiendas online altamente convertibles, rápidas y seguras. Integración con pasarelas de pago y diseño UI/UX que maximiza las ventas.'
+    title: 'E-commerce',
+    target: 'Ideal para comercios que venden online.',
+    description: 'Tiendas online optimizadas para vender más, con pagos integrados y una experiencia rápida y segura.'
   },
   {
     icon: <CalendarIcon />,
-    title: 'Gestión de Turnos',
-    description: 'Sistemas inteligentes para reservar y administrar citas. Ideal para clínicas, consultorios, barberías y profesionales.'
+    title: 'Gestión de turnos',
+    target: 'Ideal para clínicas, consultorios y profesionales.',
+    description: 'Sistemas inteligentes para automatizar reservas, enviar recordatorios y organizar tu agenda sin esfuerzo.'
   },
   {
     icon: <PackageIcon />,
-    title: 'Control de Stock',
-    description: 'Plataformas a medida para gestionar inventarios, proveedores y flujos de mercadería en tiempo real con reportes detallados.'
+    title: 'Control de stock',
+    target: 'Ideal para negocios con inventario.',
+    description: 'Plataformas precisas para gestionar tus productos, proveedores y flujo de mercadería en tiempo real.'
   },
   {
     icon: <UtensilsIcon />,
     title: 'Sistemas para pedidos',
-    description: 'Aplicaciones web para pedidos de comida, menú digital QR y gestión integral para restaurantes y locales de comida rápida.'
+    target: 'Ideal para restaurantes y locales gastronómicos.',
+    description: 'Aplicaciones web para recibir pedidos directos, menú digital QR y gestión ágil de cocina.'
   },
   {
     icon: <PenIcon />,
-    title: 'Blogs y Portales CMS',
-    description: 'Desarrollo de sitios de contenido autogestionables, optimizados para SEO y velocidad de carga excepcional.'
+    title: 'Blogs',
+    target: 'Ideal para creadores de contenido y marcas.',
+    description: 'Sitios web autogestionables, optimizados para SEO y diseñados para posicionar tu contenido.'
   },
   {
     icon: <SettingsIcon />,
-    title: 'Software a Medida',
-    description: '¿Tienes una idea única? Desarrollamos la solución exacta que tu modelo de negocio necesita, sin limitaciones.'
+    title: 'Software a medida',
+    target: 'Para empresas con procesos únicos.',
+    description: 'Desarrollamos la herramienta exacta que tu modelo de negocio necesita para escalar sin límites.'
   }
 ];
 
 const Services = () => {
+  const handleScrollToPortfolio = (e) => {
+    e.preventDefault();
+    const target = document.getElementById('portfolio');
+    if (target) {
+      const startPosition = window.pageYOffset;
+      const targetPosition = target.getBoundingClientRect().top - 80;
+      const startTime = performance.now();
+      const duration = 1000;
+
+      const scrollAnimation = (currentTime) => {
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const ease = progress < 0.5 
+          ? 4 * progress * progress * progress 
+          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+        window.scrollTo(0, startPosition + targetPosition * ease);
+        if (timeElapsed < duration) {
+          requestAnimationFrame(scrollAnimation);
+        }
+      };
+      requestAnimationFrame(scrollAnimation);
+    }
+  };
+
   return (
-    <section id="services" className="section">
+    <section id="services" className="section services-section">
       <div className="container">
-        <h2 className="section-title reveal">Nuestros <span className="text-gradient">Servicios</span></h2>
+        <div className="services-header reveal">
+          <h2 className="section-title">
+            No todos los negocios tienen el mismo desafío.
+          </h2>
+          <p className="services-subtitle">
+            Por eso desarrollamos soluciones adaptadas a cada necesidad.
+          </p>
+        </div>
 
         <div className="services-grid">
           {servicesData.map((service, index) => (
             <div className={`service-card reveal delay-${(index % 3) + 1}`} key={index}>
               <div className="service-icon">{service.icon}</div>
               <h3>{service.title}</h3>
-              <p>{service.description}</p>
+              <p className="service-target">{service.target}</p>
+              <p className="service-description">{service.description}</p>
             </div>
           ))}
+        </div>
+
+        <div className="services-bridge reveal">
+          <h2 className="bridge-title">¿Cómo se ve esto en la práctica?</h2>
+          <p className="bridge-text">
+            Estas son algunas de las soluciones que desarrollamos para empresas y profesionales de distintos rubros.
+          </p>
+          <a href="#portfolio" onClick={handleScrollToPortfolio} className="bridge-cta">
+            Explorar proyectos &rarr;
+          </a>
         </div>
       </div>
     </section>

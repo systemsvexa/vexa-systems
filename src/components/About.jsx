@@ -1,54 +1,80 @@
 import React from 'react';
 import './About.css';
 import vexaLogo from '../assets/vexa_logo_transparent.png';
+import aboutImg from '../assets/about.jpeg';
+
+const MailIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>;
+const LinkedInIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>;
 
 const About = () => {
   return (
     <section id="about" className="section">
       <div className="container">
-        <h2 className="section-title reveal">Quiénes <span className="text-gradient">Somos</span></h2>
+        <h2 className="section-title reveal">Sobre <span className="text-gradient">Nosotros</span></h2>
 
         <div className="about-content">
-          <div className="about-image reveal delay-1">
-            <div className="about-img-placeholder">
-              <img src={vexaLogo} alt="Vexa Systems Logo" style={{ width: '90%', height: '90%', objectFit: 'contain', zIndex: 1, filter: 'brightness(0) invert(1)' }} />
-            </div>
-          </div>
-
-          <div className="about-text reveal delay-2">
-            <h3>Innovación Tecnológica para tu Empresa</h3>
+          <div className="about-text reveal delay-1">
+            <h3>Nuestra Misión</h3>
             <p>
-              En Vexa Systems somos un equipo de ingenieros y diseñadores apasionados por crear soluciones de software que resuelven problemas reales. No solo escribimos código; construimos herramientas que escalan y optimizan los procesos de nuestros clientes.
+              En Vexa Systems somos un equipo de profesionales apasionados por crear soluciones de software que resuelven problemas reales. No solo escribimos código; construimos herramientas que escalan y optimizan los procesos de nuestros clientes.
             </p>
             <p>
-              Nuestra filosofía se basa en entender profundamente la necesidad del negocio para luego aplicar la tecnología adecuada. Ya sea una plataforma de ecommerce de alto tráfico, un sistema de gestión interno, o una aplicación web compleja, entregamos calidad premium.
+              Nuestra filosofía se basa en entender profundamente la necesidad del negocio para luego aplicar la tecnología adecuada. Ya sea una plataforma de ecommerce, un sistema de gestión interno, o una aplicación web compleja, entregamos calidad premium.
             </p>
+          </div>
 
-            <div className="founders-list">
-              <h4 className="founders-title">Fundadores</h4>
-              <a href="mailto:valentinobenedetti9@gmail.com" className="founder-item reveal delay-1">
-                <div className="founder-photo-placeholder"></div>
-                <div className="founder-info">
-                  <span className="founder-name">Valentino Benedetti</span>
-                  <span className="founder-role">Analista de Sistemas</span>
-                </div>
-              </a>
-              <a href="mailto:juannievas15@gmail.com" className="founder-item reveal delay-2">
-                <div className="founder-photo-placeholder"></div>
-                <div className="founder-info">
-                  <span className="founder-name">Juan Nievas</span>
-                  <span className="founder-role">Analista de Sistemas</span>
-                </div>
-              </a>
-              <a href="mailto:juannsaenzz17@gmail.com" className="founder-item reveal delay-3">
-                <div className="founder-photo-placeholder"></div>
-                <div className="founder-info">
-                  <span className="founder-name">Juan Saenz</span>
-                  <span className="founder-role">Analista de Sistemas</span>
-                </div>
-              </a>
+          <div className="founders-list reveal delay-2" style={{ marginTop: 0 }}>
+            <h4 className="founders-title">Fundadores</h4>
+            <div className="founder-item">
+              <div className="founder-photo-placeholder"></div>
+              <div className="founder-info">
+                <span className="founder-name">Valentino Benedetti</span>
+                <span className="founder-role">Analista de Sistemas</span>
+              </div>
+              <div className="founder-actions">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=valentinobenedetti9@gmail.com" target="_blank" rel="noopener noreferrer" className="founder-mail-btn">
+                  <MailIcon /> Enviar correo
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="founder-linkedin-btn">
+                  <LinkedInIcon />
+                </a>
+              </div>
+            </div>
+            <div className="founder-item">
+              <div className="founder-photo-placeholder"></div>
+              <div className="founder-info">
+                <span className="founder-name">Juan Nievas</span>
+                <span className="founder-role">Analista de Sistemas</span>
+              </div>
+              <div className="founder-actions">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=juannievas15@gmail.com" target="_blank" rel="noopener noreferrer" className="founder-mail-btn">
+                  <MailIcon /> Enviar correo
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="founder-linkedin-btn">
+                  <LinkedInIcon />
+                </a>
+              </div>
+            </div>
+            <div className="founder-item">
+              <div className="founder-photo-placeholder"></div>
+              <div className="founder-info">
+                <span className="founder-name">Juan Saenz</span>
+                <span className="founder-role">Analista de Sistemas</span>
+              </div>
+              <div className="founder-actions">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=juannsaenzz17@gmail.com" target="_blank" rel="noopener noreferrer" className="founder-mail-btn">
+                  <MailIcon /> Enviar correo
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="founder-linkedin-btn">
+                  <LinkedInIcon />
+                </a>
+              </div>
             </div>
           </div>
+        </div>
+
+        <div className="team-photo-container reveal delay-3">
+          <img src={aboutImg} alt="Equipo Vexa Systems" className="team-photo-img" />
         </div>
       </div>
     </section>

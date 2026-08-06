@@ -1,0 +1,159 @@
+.problem-section {
+  background-color: var(--color-bg-card);
+  position: relative;
+  z-index: 1;
+  padding: 6rem 0; /* Reduced from 8rem */
+}
+
+.problem-header {
+  text-align: left;
+  max-width: 800px;
+  margin-bottom: 4rem; /* Reduced from 5rem */
+}
+
+.problem-header .section-title {
+  text-align: left;
+  font-size: 3.5rem;
+  letter-spacing: -1px;
+  /* Retains the default serif font applied to section titles */
+}
+
+.problem-header .section-title::after {
+  left: 0;
+  transform: none;
+}
+
+.problem-subtitle {
+  font-size: 1.3rem;
+  color: var(--color-text-muted);
+  margin-top: 2rem;
+  line-height: 1.6;
+  font-family: var(--font-brand); /* Satoshi Regular */
+  font-weight: 400;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Forced 3 columns */
+  gap: 3rem;
+  margin-bottom: 4.5rem;
+}
+
+.problem-card {
+  text-align: left;
+}
+
+.problem-number {
+  color: var(--color-brand-blue);
+  font-family: var(--font-brand);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.problem-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+  font-family: var(--font-brand);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.problem-card p {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  font-size: 1rem;
+  font-family: var(--font-brand);
+  font-weight: 400;
+}
+
+.problem-footer {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 2rem;
+}
+
+.problem-highlight {
+  position: relative;
+  padding: 3rem 0 3rem 3rem; /* Huge vertical padding like a blockquote */
+  max-width: 800px;
+  text-align: left;
+}
+
+.problem-highlight::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15%;
+  bottom: 15%;
+  width: 4px;
+  background-color: var(--color-brand-blue);
+}
+
+.highlight-main {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  margin-bottom: 2.5rem;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.highlight-secondary {
+  color: var(--color-text-muted);
+}
+
+.highlight-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.problem-highlight .highlight-sub {
+  color: var(--color-text-muted);
+  font-weight: 400;
+  font-size: 1.2rem;
+  font-family: var(--font-brand);
+}
+
+.problem-cta-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-brand-blue);
+  font-family: var(--font-brand);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: var(--transition-fast);
+  align-self: flex-start;
+}
+
+.problem-cta-link:hover {
+  color: var(--color-primary-light);
+  transform: translateX(5px);
+}
+
+@media (max-width: 992px) {
+  .problem-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .problem-header .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .problem-grid {
+    gap: 3rem;
+  }
+  
+  .problem-highlight {
+    padding: 2rem 1.5rem;
+  }
+  
+  .highlight-main {
+    font-size: 1.6rem;
+  }
+}

@@ -1,6 +1,31 @@
+#services {
+  background-color: var(--color-bg-light);
+}
+
+.services-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 4rem auto;
+}
+
+.services-header .section-title {
+  font-size: 2.8rem;
+  letter-spacing: -1px;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.services-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-brand);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-top: 3rem;
 }
@@ -8,8 +33,8 @@
 .service-card {
   background: var(--color-bg-card);
   border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 20px;
-  padding: 2.5rem 2rem;
+  border-radius: 0;
+  padding: 3.5rem 2.5rem; /* Increased padding for more height and air */
   transition: var(--transition-normal);
   position: relative;
   overflow: hidden;
@@ -30,9 +55,10 @@
 }
 
 .service-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-8px) scale(1.06); /* Pronounced zoom without exaggeration */
   border-color: rgba(0, 119, 255, 0.3);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06); /* Much softer shadow */
+  z-index: 10;
 }
 
 .service-card:hover::before {
@@ -42,30 +68,118 @@
 .service-icon {
   width: 60px;
   height: 60px;
-  background: rgba(0, 119, 255, 0.1);
-  border-radius: 15px;
+  background: var(--color-text);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
-  color: var(--color-primary);
   margin-bottom: 1.5rem;
-  transition: var(--transition-fast);
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
 }
 
 .service-card:hover .service-icon {
-  background: var(--gradient-primary);
-  color: white;
-  box-shadow: var(--shadow-glow);
+  background: var(--color-text);
+  color: var(--color-secondary);
+  transform: translateY(-3px);
 }
 
 .service-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+  font-family: var(--font-brand);
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
-.service-card p {
+.service-target {
+  font-size: 0.95rem;
+  color: var(--color-brand-blue);
+  margin-bottom: 0;
+  font-weight: 500;
+  font-family: var(--font-brand);
+  letter-spacing: 0.3px;
+  transition: margin 0.4s ease;
+}
+
+.service-description {
   color: var(--color-text-muted);
   font-size: 0.95rem;
   line-height: 1.6;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(10px);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.service-card:hover .service-target {
+  margin-bottom: 1rem;
+}
+
+.service-card:hover .service-description {
+  max-height: 150px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Transition Bridge */
+.services-section {
+  padding-bottom: 0; /* Let the bridge handle the bottom padding */
+}
+
+.services-bridge {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2rem 0 3rem 0; /* Reduced bottom padding from 6rem to 3rem */
+}
+
+.bridge-title {
+  font-size: 2.2rem;
+  font-family: var(--font-serif);
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.bridge-text {
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-brand);
+  max-width: 600px;
+  margin: 0 auto 2.5rem auto;
+  line-height: 1.6;
+}
+
+.bridge-cta {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-brand-blue);
+  font-family: var(--font-brand);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.bridge-cta:hover {
+  color: var(--color-primary-light);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 992px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .services-header .section-title {
+    font-size: 2.3rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
 }
