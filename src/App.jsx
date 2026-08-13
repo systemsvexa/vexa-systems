@@ -8,6 +8,7 @@ import Portfolio from './components/Portfolio';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { useScrollReveal } from './hooks/useScrollReveal';
+import WhatsAppButton from './components/WhatsAppButton';
 import './index.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <About />
       <Contact />
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

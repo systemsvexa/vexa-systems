@@ -1,32 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import './Portfolio.css';
 
-// Using the AI generated mockup images we copied earlier
-import ecommerceImg from '../assets/ecommerce.png';
-import turnosImg from '../assets/turn_management.png';
-import restaurantImg from '../assets/restaurant.png';
+import bm01 from '../assets/bloquemundo_01.png';
+import bm02 from '../assets/bloquemundo_02.png';
+import bm03 from '../assets/bloquemundo_03.png';
+import bm04 from '../assets/bloquemundo_04.png';
+import bm05 from '../assets/bloquemundo_05.png';
+import bm06 from '../assets/bloquemundo_06.png';
+import bm07 from '../assets/bloquemundo_07.png';
+import bm08 from '../assets/bloquemundo_08.png';
+
+import admin01 from '../assets/admin_01.png';
+import admin02 from '../assets/admin_02.png';
+import admin03 from '../assets/admin_03.png';
+import admin04 from '../assets/admin_04.png';
+import admin05 from '../assets/admin_05.png';
+import admin06 from '../assets/admin_06.png';
+
+import turnos01 from '../assets/turnos_01.png';
+import turnos02 from '../assets/turnos_02.png';
+import turnos03 from '../assets/turnos_03.png';
+import turnos04 from '../assets/turnos_04.png';
+import turnos05 from '../assets/turnos_05.png';
 
 const projects = [
   {
     title: 'E-commerce',
     category: 'Bloque Mundo',
-    description: 'Página web completa para venta de productos marca LEGO.',
-    image: ecommerceImg,
-    gallery: [ecommerceImg, ecommerceImg, ecommerceImg] // Simulated gallery
+    description: 'Página web para venta de productos, con carrito de compras, pasarela de pagos y sección favoritos.',
+    image: bm01,
+    gallery: [bm01, bm02, bm03, bm04, bm05, bm06, bm07, bm08],
+    link: 'https://bloquemundo.vercel.app/'
   },
   {
     title: 'Gestión de Turnos',
     category: 'Centro Quiropráctico Nicolás',
-    description: 'Sistema integral de administración de turnos e historial de pacientes.',
-    image: turnosImg,
-    gallery: [turnosImg, turnosImg, turnosImg] // Simulated gallery
+    description: 'Sistema integral de administración de turnos y fichas de pacientes.',
+    image: turnos01,
+    gallery: [turnos01, turnos02, turnos03, turnos04, turnos05]
   },
   {
-    title: 'FoodFlow Ordering',
-    category: 'App Gastronómica',
-    description: 'Menú digital interactivo y sistema de gestión de pedidos para cadena de restaurantes.',
-    image: restaurantImg,
-    gallery: [restaurantImg, restaurantImg, restaurantImg] // Simulated gallery
+    title: 'Administración completa para ventas',
+    category: 'Bloque Mundo',
+    description: 'Sistema de gestión de productos, ventas, envíos y clientes.',
+    image: admin01,
+    gallery: [admin01, admin02, admin03, admin04, admin05, admin06]
   }
 ];
 
@@ -37,18 +55,34 @@ const Portfolio = () => {
   const openModal = (project, index = 0) => {
     setActiveProject(project);
     setActiveImageIndex(index);
-    document.body.style.overflow = 'hidden'; // Prevent scrolling in background
+    document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setActiveProject(null);
-    document.body.style.overflow = 'auto'; // Restore scrolling
+    document.body.style.overflow = 'auto';
   };
 
-  // Close modal on escape key
+  const nextImage = (e) => {
+    e.stopPropagation();
+    if (activeProject) {
+      setActiveImageIndex((prev) => (prev === activeProject.gallery.length - 1 ? 0 : prev + 1));
+    }
+  };
+
+  const prevImage = (e) => {
+    e.stopPropagation();
+    if (activeProject) {
+      setActiveImageIndex((prev) => (prev === 0 ? activeProject.gallery.length - 1 : prev - 1));
+    }
+  };
+
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && activeProject) closeModal();
+      if (!activeProject) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowRight') nextImage(e);
+      if (e.key === 'ArrowLeft') prevImage(e);
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -82,30 +116,51 @@ const Portfolio = () => {
                 <span className="portfolio-category">{project.category}</span>
                 <h3 className="portfolio-title">{project.title}</h3>
                 <p className="portfolio-description">{project.description}</p>
-                <a
-                  href="#portfolio"
-                  className="portfolio-link"
-                  onClick={(e) => { e.preventDefault(); openModal(project); }}
-                >
-                  Ver proyecto &rarr;
-                </a>
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="portfolio-link"
+                  >
+                    Ver proyecto &rarr;
+                  </a>
+                )}
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Gallery Modal */}
       {activeProject && (
         <div className="portfolio-modal-overlay" onClick={closeModal}>
           <div className="portfolio-modal-content" onClick={e => e.stopPropagation()}>
             <button className="modal-close" onClick={closeModal}>&times;</button>
             <div className="modal-gallery-main">
+              {activeProject.gallery.length > 1 && (
+                <button className="gallery-nav-btn prev" onClick={prevImage}>&#10094;</button>
+              )}
               <img
                 src={activeProject.gallery[activeImageIndex]}
                 alt={`${activeProject.title} vista ${activeImageIndex + 1}`}
               />
+              {activeProject.gallery.length > 1 && (
+                <button className="gallery-nav-btn next" onClick={nextImage}>&#10095;</button>
+              )}
+
+              {activeProject.gallery.length > 1 && (
+                <div className="gallery-dots">
+                  {activeProject.gallery.map((_, idx) => (
+                    <span
+                      key={idx}
+                      className={`gallery-dot ${idx === activeImageIndex ? 'active' : ''}`}
+                      onClick={(e) => { e.stopPropagation(); setActiveImageIndex(idx); }}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
+
             <div className="modal-gallery-thumbnails">
               {activeProject.gallery.map((img, idx) => (
                 <div
@@ -117,6 +172,7 @@ const Portfolio = () => {
                 </div>
               ))}
             </div>
+
             <div className="modal-info">
               <h3>{activeProject.title}</h3>
               <p>{activeProject.category}</p>

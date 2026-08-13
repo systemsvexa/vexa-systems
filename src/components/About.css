@@ -9,10 +9,16 @@
   align-items: flex-start;
 }
 
-.about-text p {
+.about-text-center {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 4rem auto;
+}
+
+.about-text-center p {
   color: var(--color-text-muted);
   margin-bottom: 1.5rem;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
 }
 
 .founders-list {
@@ -189,34 +195,65 @@
 }
 
 .team-photo-container {
-  width: 75%;
-  max-width: 800px;
-  margin: 3rem auto 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
   border-radius: 0;
-  overflow: hidden;
-  box-shadow: var(--shadow-card);
-  transition: var(--transition-normal);
-  border: 2px solid rgba(0, 180, 255, 0.1);
-  background: var(--color-bg-card);
-}
-
-.team-photo-container:hover {
-  transform: translateY(-5px);
-  border-color: var(--color-secondary);
-  box-shadow: 0 10px 30px rgba(0, 180, 255, 0.15);
+  box-shadow: none;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
 }
 
 .team-photo-img {
   width: 100%;
-  height: 550px;
+  height: auto;
+  max-height: 550px;
+  border-radius: 0;
   object-fit: cover;
   object-position: center 30%;
   display: block;
-  transition: transform 0.5s ease;
+  box-shadow: var(--shadow-card);
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  z-index: 1;
 }
 
-.team-photo-container:hover .team-photo-img {
-  transform: scale(1.05);
+.team-photo-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+}
+
+.base-img {
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  z-index: 1;
+}
+
+.team-photo-wrapper:hover:not(.has-hover) .base-img {
+  transform: scale(1.03) translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 119, 255, 0.15);
+}
+
+.team-photo-wrapper.has-hover .base-img {
+  filter: brightness(0.5);
+}
+
+.highlight-img {
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.highlight-img.active {
+  opacity: 1;
 }
 
 @media (max-width: 992px) {
@@ -227,12 +264,16 @@
 
 @media (max-width: 576px) {
   .founder-item {
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 1.25rem;
+    gap: 1rem;
   }
   .founder-info {
-    align-items: center;
+    align-items: flex-start;
+    flex: 1;
   }
   .founder-actions {
     width: 100%;

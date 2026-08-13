@@ -18,11 +18,6 @@
   /* Retains the default serif font applied to section titles */
 }
 
-.problem-header .section-title::after {
-  left: 0;
-  transform: none;
-}
-
 .problem-subtitle {
   font-size: 1.3rem;
   color: var(--color-text-muted);
@@ -71,67 +66,8 @@
 
 .problem-footer {
   display: flex;
-  justify-content: flex-start;
-  margin-top: 2rem;
-}
-
-.problem-highlight {
-  position: relative;
-  padding: 3rem 0 3rem 3rem; /* Huge vertical padding like a blockquote */
-  max-width: 800px;
-  text-align: left;
-}
-
-.problem-highlight::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 15%;
-  bottom: 15%;
-  width: 4px;
-  background-color: var(--color-brand-blue);
-}
-
-.highlight-main {
-  font-family: var(--font-serif);
-  font-size: 2.2rem;
-  margin-bottom: 2.5rem;
-  color: var(--color-text);
-  line-height: 1.3;
-}
-
-.highlight-secondary {
-  color: var(--color-text-muted);
-}
-
-.highlight-bottom {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.problem-highlight .highlight-sub {
-  color: var(--color-text-muted);
-  font-weight: 400;
-  font-size: 1.2rem;
-  font-family: var(--font-brand);
-}
-
-.problem-cta-link {
-  display: inline-flex;
-  align-items: center;
-  color: var(--color-brand-blue);
-  font-family: var(--font-brand);
-  font-weight: 700;
-  font-size: 1.1rem;
-  text-decoration: none;
-  transition: var(--transition-fast);
-  align-self: flex-start;
-}
-
-.problem-cta-link:hover {
-  color: var(--color-primary-light);
-  transform: translateX(5px);
+  justify-content: center;
+  margin-top: 4rem;
 }
 
 @media (max-width: 992px) {

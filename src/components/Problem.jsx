@@ -14,9 +14,9 @@ const Problem = () => {
       const scrollAnimation = (currentTime) => {
         const timeElapsed = currentTime - startTime;
         const progress = Math.min(timeElapsed / duration, 1);
-        
-        const ease = progress < 0.5 
-          ? 4 * progress * progress * progress 
+
+        const ease = progress < 0.5
+          ? 4 * progress * progress * progress
           : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
         window.scrollTo(0, startPosition + targetPosition * ease);
@@ -43,9 +43,9 @@ const Problem = () => {
         <div className="problem-grid">
           <div className="problem-card reveal delay-1">
             <div className="problem-number">01</div>
-            <h3>Procesos desordenados</h3>
+            <h3>Tiempo</h3>
             <p>
-              La información está repartida entre planillas, mensajes, papeles y distintas aplicaciones. Encontrar lo que necesitás lleva más tiempo del que debería.
+              Encontrar lo que necesitás lleva más tiempo del que debería.
             </p>
           </div>
 
@@ -53,7 +53,7 @@ const Problem = () => {
             <div className="problem-number">02</div>
             <h3>Trabajo repetitivo</h3>
             <p>
-              Tu equipo dedica horas a tareas manuales que podrían automatizarse, aumentando los errores y reduciendo la productividad.
+              Dedicás horas a tareas manuales que podrían automatizarse.
             </p>
           </div>
 
@@ -61,26 +61,15 @@ const Problem = () => {
             <div className="problem-number">03</div>
             <h3>Falta de control</h3>
             <p>
-              Sin información centralizada es difícil saber qué está pasando en el negocio y tomar decisiones con confianza.
+              Cuesta saber qué pasa en el negocio cuando la información está desordenada.
             </p>
           </div>
         </div>
 
         <div className="problem-footer reveal delay-2">
-          <div className="problem-highlight">
-            <p className="highlight-main">
-              El crecimiento no debería complicar tu trabajo.<br />
-              <span className="highlight-secondary">Un buen software hace exactamente lo contrario.</span>
-            </p>
-            <div className="highlight-bottom">
-              <p className="highlight-sub">
-                Da el salto a un sistema diseñado para acompañar el crecimiento de tu empresa.
-              </p>
-              <a href="#services" onClick={handleScrollToServices} className="problem-cta-link">
-                Ver nuestras soluciones &rarr;
-              </a>
-            </div>
-          </div>
+          <a href="#services" onClick={handleScrollToServices} className="btn btn-primary">
+            Ver nuestras soluciones
+          </a>
         </div>
       </div>
     </section>

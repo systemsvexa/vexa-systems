@@ -7,8 +7,8 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Hero section height is 100vh. We switch to solid background right before leaving it.
-      if (window.scrollY > window.innerHeight - 80) {
+      // Switch to solid background as soon as we start scrolling
+      if (window.scrollY > 50) {
         setScrolled(true);
       } else {
         setScrolled(false);

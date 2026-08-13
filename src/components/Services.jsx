@@ -53,9 +53,11 @@ const Services = () => {
     const target = document.getElementById('portfolio');
     if (target) {
       const startPosition = window.pageYOffset;
-      const targetPosition = target.getBoundingClientRect().top - 80;
+      // We don't subtract 80 here because the section already has padding-top that perfectly 
+      // accommodates the navbar height natively.
+      const targetPosition = target.getBoundingClientRect().top;
       const startTime = performance.now();
-      const duration = 1000;
+      const duration = 1200; // 1.2 seconds cinematic scroll
 
       const scrollAnimation = (currentTime) => {
         const timeElapsed = currentTime - startTime;
@@ -100,8 +102,8 @@ const Services = () => {
           <p className="bridge-text">
             Estas son algunas de las soluciones que desarrollamos para empresas y profesionales de distintos rubros.
           </p>
-          <a href="#portfolio" onClick={handleScrollToPortfolio} className="bridge-cta">
-            Explorar proyectos &rarr;
+          <a href="#portfolio" onClick={handleScrollToPortfolio} className="btn btn-primary">
+            Explorar proyectos
           </a>
         </div>
       </div>
