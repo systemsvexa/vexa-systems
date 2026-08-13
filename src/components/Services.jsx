@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Services.css';
 
 const CartIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="8" cy="21" r="1" /><circle cx="19" cy="21" r="1" /><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" /></svg>;
@@ -48,16 +48,82 @@ const servicesData = [
 ];
 
 const Services = () => {
+  const [progressPx, setProgressPx] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const timelineRef = useRef(null);
+  const itemRefs = useRef([]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!timelineRef.current) return;
+      const windowHeight = window.innerHeight;
+      const triggerPoint = windowHeight * 0.5;
+
+      let closestIndex = 0;
+      let minDistance = Infinity;
+
+      // Encontrar el ítem más cercano al centro de la pantalla
+      itemRefs.current.forEach((el, index) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        // Centro del ítem relativo al viewport
+        const itemCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(itemCenter - triggerPoint);
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      // Si la sección está muy abajo (aún no se llega), podemos dejar el índice en 0
+      // o apagarlo, pero anclarlo al más cercano es perfecto para que el salto sea lógico.
+      setActiveIndex(closestIndex);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Llamar un par de veces al inicio para asegurar que los elementos ya están renderizados
+    handleScroll();
+    setTimeout(handleScroll, 100);
+    setTimeout(handleScroll, 500); // Un chequeo extra para carga de imágenes o fuentes
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Cuando cambia el ítem activo, movemos la barra EXACTAMENTE a su centro
+  useEffect(() => {
+    const el = itemRefs.current[activeIndex];
+    if (el && timelineRef.current) {
+      // En lugar de calcular el centro del ítem, buscamos el nodo exacto
+      const nodeEl = el.querySelector('.timeline-node');
+      
+      if (nodeEl) {
+        // Obtenemos la posición exacta del nodo relativa al contenedor de la línea
+        const containerRect = timelineRef.current.getBoundingClientRect();
+        const nodeRect = nodeEl.getBoundingClientRect();
+        
+        // Distancia desde el tope del contenedor hasta el centro del nodo
+        const targetPx = (nodeRect.top - containerRect.top) + (nodeRect.height / 2);
+        setProgressPx(targetPx);
+      } else {
+        // Fallback por si no encuentra el nodo
+        const targetPx = el.offsetTop + (el.offsetHeight / 2);
+        setProgressPx(targetPx);
+      }
+    }
+  }, [activeIndex]);
+
   const handleScrollToPortfolio = (e) => {
     e.preventDefault();
     const target = document.getElementById('portfolio');
     if (target) {
       const startPosition = window.pageYOffset;
-      // We don't subtract 80 here because the section already has padding-top that perfectly 
-      // accommodates the navbar height natively.
       const targetPosition = target.getBoundingClientRect().top;
       const startTime = performance.now();
-      const duration = 1200; // 1.2 seconds cinematic scroll
+      const duration = 1200;
 
       const scrollAnimation = (currentTime) => {
         const timeElapsed = currentTime - startTime;
@@ -86,15 +152,43 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="services-grid">
-          {servicesData.map((service, index) => (
-            <div className={`service-card reveal delay-${(index % 3) + 1}`} key={index}>
-              <div className="service-icon">{service.icon}</div>
-              <h3>{service.title}</h3>
-              <p className="service-target">{service.target}</p>
-              <p className="service-description">{service.description}</p>
+        <div className="services-timeline" ref={timelineRef}>
+          <div className="timeline-line">
+            <div className="timeline-progress" style={{ height: `${progressPx}px` }}></div>
+            <div className="timeline-glow" style={{ top: `${progressPx}px` }}>
+              <div className="timeline-glow-inner"></div>
             </div>
-          ))}
+          </div>
+
+          {servicesData.map((service, index) => {
+            const isActive = index === activeIndex;
+
+            return (
+              <div 
+                className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'} ${isActive ? 'active' : ''}`} 
+                key={index}
+                ref={el => itemRefs.current[index] = el}
+                data-index={index}
+              >
+                <div className="timeline-node">
+                  <div className="node-inner"></div>
+                </div>
+                
+                <div className="timeline-content">
+                  <span className="service-number">0{index + 1}</span>
+                  <h3>{service.title}</h3>
+                  <p className="service-target">{service.target}</p>
+                  <p className="service-description">{service.description}</p>
+                </div>
+                
+                <div className="timeline-visual">
+                  <div className="visual-box">
+                    {service.icon}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         <div className="services-bridge reveal">

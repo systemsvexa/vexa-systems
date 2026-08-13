@@ -23,105 +23,185 @@
   line-height: 1.6;
 }
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(260px, auto);
-  gap: 1.5rem;
-  margin-top: 3rem;
-}
-
-.service-card {
-  background: var(--color-bg-card, #fff);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 0;
-  padding: 3rem 2.5rem;
-  transition: all 0.4s ease;
+.services-timeline {
   position: relative;
-  overflow: hidden;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  max-width: 1000px;
+  margin: 6rem auto 4rem auto;
+  padding: 2rem 0;
 }
 
-.service-card::before {
-  content: '';
+.timeline-line {
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(0, 119, 255, 0.05) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  z-index: -1;
-  pointer-events: none;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: rgba(0, 0, 0, 0.06);
+  transform: translateX(-50%);
+  z-index: 1;
 }
 
-.service-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(0, 119, 255, 0.3);
-  background: rgba(0, 119, 255, 0.02);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 0 20px rgba(0, 119, 255, 0.1);
-  z-index: 10;
+.timeline-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--color-primary);
+  box-shadow: 0 0 15px var(--color-primary);
+  transition: height 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.service-card:hover::before {
-  opacity: 1;
-}
-
-.service-icon {
-  width: 56px;
-  height: 56px;
-  background: rgba(0, 119, 255, 0.05);
-  border: 1px solid rgba(0, 119, 255, 0.1);
-  border-radius: 0;
+.timeline-glow {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(0, 119, 255, 0.15);
+  transition: top 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: auto;
-  color: var(--color-primary);
-  transition: all 0.4s ease;
 }
 
-.service-card:hover .service-icon {
+.timeline-glow-inner {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
   background: var(--color-primary);
-  border-color: var(--color-primary);
-  color: #fff;
-  transform: scale(1.1) rotate(-5deg);
-  box-shadow: 0 10px 20px rgba(0, 119, 255, 0.2);
+  box-shadow: 0 0 15px var(--color-primary);
 }
 
-.service-card h3 {
-  font-size: 1.5rem;
-  margin-top: 2rem;
+.timeline-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: 6rem;
+  z-index: 2;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-item.left {
+  flex-direction: row-reverse;
+}
+
+.timeline-content, .timeline-visual {
+  width: 45%;
+  opacity: 0.2;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.timeline-item.active .timeline-content,
+.timeline-item.active .timeline-visual {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-node {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: var(--color-bg-light);
+  border: 4px solid rgba(0, 0, 0, 0.08);
+  border-radius: 50%;
+  z-index: 3;
+  transition: all 0.5s ease;
+}
+
+.timeline-item.active .timeline-node {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 20px rgba(0, 119, 255, 0.3);
+}
+
+.node-inner {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 8px;
+  height: 8px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.timeline-item.active .node-inner {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.service-number {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.timeline-content h3 {
+  font-size: 2rem;
   margin-bottom: 0.5rem;
   color: var(--color-text);
   font-family: var(--font-brand);
-  font-weight: 700;
   letter-spacing: -0.5px;
 }
 
-.service-target {
-  font-size: 0.95rem;
+.timeline-content .service-target {
   color: var(--color-primary);
-  margin-bottom: 1rem;
-  font-weight: 500;
-  font-family: var(--font-brand);
-  letter-spacing: 0.3px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
 }
 
-.service-description {
+.timeline-content .service-description {
   color: var(--color-text-muted);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin: 0;
-  transition: color 0.3s ease;
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
-.service-card:hover .service-description {
-  color: var(--color-text);
+.timeline-visual {
+  display: flex;
+}
+
+.timeline-item.left .timeline-visual {
+  justify-content: flex-end;
+}
+.timeline-item.right .timeline-visual {
+  justify-content: flex-start;
+}
+
+.visual-box {
+  width: 140px;
+  height: 140px;
+  background: #fff;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  color: var(--color-primary);
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.6s ease;
+}
+
+.timeline-item.active .visual-box {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(0, 119, 255, 0.12);
+}
+
+.visual-box svg {
+  width: 56px;
+  height: 56px;
+  stroke-width: 1.5;
 }
 
 /* Transition Bridge */
@@ -168,22 +248,71 @@
 }
 
 @media (max-width: 992px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .services-timeline {
+    padding-left: 0;
   }
 }
 
 @media (max-width: 768px) {
   .services-header .section-title {
-    font-size: 2.3rem;
+    font-size: 2.2rem;
   }
   
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
+  .timeline-line {
+    left: 20px;
+    /* Mantenemos el translateX del escritorio para que el centro sea exacto en 20px */
   }
+  
+  .timeline-node {
+    left: 20px;
+    /* Quitamos el top: 0 y el translate para heredar el centrado perfecto del escritorio */
+  }
+  
+  .timeline-item, .timeline-item.left {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 50px;
+    margin-bottom: 4rem;
+  }
+  
+  .timeline-content, .timeline-visual {
+    width: 100%;
+  }
+  
+  .timeline-visual {
+    margin-top: 2rem;
+    order: -1;
+    margin-bottom: 1.5rem;
+  }
+  
+  .timeline-item.left .timeline-visual,
+  .timeline-item.right .timeline-visual {
+    justify-content: flex-start;
+  }
+  
+  .visual-box {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .visual-box svg {
+    width: 40px;
+    height: 40px;
+  }
+}
 
-  .service-card {
-    padding: 2rem 1.5rem;
+@media (max-width: 576px) {
+  .services-header .section-title {
+    font-size: 1.8rem;
+  }
+  .services-subtitle {
+    font-size: 1.05rem;
+  }
+  
+  .timeline-content h3 {
+    font-size: 1.5rem;
+  }
+  .timeline-content .service-description {
+    font-size: 0.95rem;
   }
 }
