@@ -1,0 +1,124 @@
+{
+  "navbar": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "We digitize and empower your business",
+    "btn_discover": "Discover more"
+  },
+  "problem": {
+    "title": "Growth brings opportunities. Also new challenges.",
+    "subtitle": "Every new client, order, appointment, or task adds complexity. When processes remain manual, growth starts working against you.",
+    "card1_title": "Time",
+    "card1_desc": "Finding what you need takes more time than it should.",
+    "card2_title": "Repetitive work",
+    "card2_desc": "You spend hours on manual tasks that could be automated.",
+    "card3_title": "Lack of control",
+    "card3_desc": "It's hard to know what's happening in the business when information is unorganized.",
+    "btn_solutions": "See our solutions"
+  },
+  "services": {
+    "title": "Not all businesses face the same challenge.",
+    "subtitle": "That's why we develop solutions tailored to every need.",
+    "ecommerce": {
+      "title": "E-commerce",
+      "target": "Ideal for retail businesses selling online.",
+      "desc": "Optimized online stores designed to sell more, with integrated payments and a fast, secure experience."
+    },
+    "turnos": {
+      "title": "Appointment scheduling",
+      "target": "Ideal for clinics, medical offices, and professionals.",
+      "desc": "Smart systems to automate bookings, send reminders, and effortlessly organize your schedule."
+    },
+    "stock": {
+      "title": "Inventory control",
+      "target": "Ideal for businesses with physical stock.",
+      "desc": "Accurate platforms to manage your products, suppliers, and merchandise flow in real time."
+    },
+    "pedidos": {
+      "title": "Ordering systems",
+      "target": "Ideal for restaurants and food services.",
+      "desc": "Web applications to receive direct orders, digital QR menus, and agile kitchen management."
+    },
+    "blogs": {
+      "title": "Blogs",
+      "target": "Ideal for content creators and brands.",
+      "desc": "Self-manageable websites, optimized for SEO and designed to rank your content."
+    },
+    "software": {
+      "title": "Custom software",
+      "target": "For companies with unique processes.",
+      "desc": "We develop the exact tool your business model needs to scale without limits."
+    },
+    "bridge_title": "How does this look in practice?",
+    "bridge_text": "These are some of the solutions we have developed for businesses and professionals in different industries.",
+    "btn_explore": "Explore projects"
+  },
+  "portfolio": {
+    "title": "Ideas turned into real solutions.",
+    "subtitle": "Discover some of the projects we've developed for businesses and professionals, tailored to the needs of each business.",
+    "view_gallery": "View gallery +",
+    "view_project": "View project",
+    "projects": {
+      "bm_desc": "E-commerce website with shopping cart, payment gateway, and favorites section.",
+      "turnos_title": "Appointment Scheduling",
+      "turnos_desc": "Comprehensive system for appointment management and patient records.",
+      "admin_title": "Complete sales administration",
+      "admin_desc": "Management system for products, sales, shipping, and clients."
+    }
+  },
+  "about": {
+    "title": "About Us.",
+    "mission_title": "Our Mission",
+    "mission_p1": "At Vexa Systems we are a team of professionals passionate about creating software solutions that solve real problems. We don't just write code; we build tools that scale and optimize our clients' processes.",
+    "mission_p2": "Our philosophy is based on deeply understanding the business needs before applying the right technology. Whether it's an ecommerce platform, an internal management system, or a complex web application. We deliver premium quality.",
+    "founders_title": "Founders",
+    "role_analyst": "Systems Analyst",
+    "send_email": "Send email"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Let's talk about your next big project.",
+    "text": "We are ready to transform your ideas into a digital reality. Fill out the form or use our direct contact channels.",
+    "location": "Location",
+    "location_value": "Concepción del Uruguay, Entre Rios, Argentina",
+    "email": "Email",
+    "phone": "Phone",
+    "form_success_title": "Message sent!",
+    "form_success_text": "Thank you for contacting us. We will reply shortly.",
+    "btn_send_another": "Send another message",
+    "form": {
+      "name_placeholder": "Your Full Name",
+      "email_placeholder": "Your Email Address",
+      "service_default": "Select the service you're interested in",
+      "service_ecommerce": "E-commerce",
+      "service_turnos": "Appointment Scheduling",
+      "service_stock": "Inventory Control",
+      "service_pedidos": "Ordering System",
+      "service_blog": "Blog / Landing Page",
+      "service_custom": "Other Custom Development",
+      "message_placeholder": "Tell us more about your project...",
+      "btn_sending": "Sending...",
+      "btn_send": "Send Message",
+      "error_general": "An error occurred while sending the message. Please try again."
+    },
+    "validation": {
+      "name_required": "Name is required",
+      "email_required": "Email address is required",
+      "email_invalid": "Enter a valid email (e.g. name@example.com)",
+      "service_required": "Please select a service",
+      "message_required": "Message cannot be empty"
+    }
+  },
+  "footer": {
+    "desc": "Empowering businesses with innovative, robust, and custom-designed software solutions for success in the digital world. Since 2026.",
+    "nav_title": "NAVIGATION",
+    "contact_title": "CONTACT",
+    "copyright": "Copyright © {{year}} Vexa Systems. All rights reserved.",
+    "developed_by": "DEVELOPED BY"
+  }
+}

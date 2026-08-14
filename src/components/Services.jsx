@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import './Services.css';
 
 const CartIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="8" cy="21" r="1" /><circle cx="19" cy="21" r="1" /><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" /></svg>;
@@ -48,6 +49,7 @@ const servicesData = [
 ];
 
 const Services = () => {
+  const { t } = useTranslation();
   const [progressPx, setProgressPx] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const timelineRef = useRef(null);
@@ -145,10 +147,10 @@ const Services = () => {
       <div className="container">
         <div className="services-header reveal">
           <h2 className="section-title">
-            No todos los negocios tienen el mismo desafío.
+            {t('services.title')}
           </h2>
           <p className="services-subtitle">
-            Por eso desarrollamos soluciones adaptadas a cada necesidad.
+            {t('services.subtitle')}
           </p>
         </div>
 
@@ -162,6 +164,8 @@ const Services = () => {
 
           {servicesData.map((service, index) => {
             const isActive = index === activeIndex;
+            const keys = ['ecommerce', 'turnos', 'stock', 'pedidos', 'blogs', 'software'];
+            const key = keys[index];
 
             return (
               <div 
@@ -176,9 +180,9 @@ const Services = () => {
                 
                 <div className="timeline-content">
                   <span className="service-number">0{index + 1}</span>
-                  <h3>{service.title}</h3>
-                  <p className="service-target">{service.target}</p>
-                  <p className="service-description">{service.description}</p>
+                  <h3>{t(`services.${key}.title`)}</h3>
+                  <p className="service-target">{t(`services.${key}.target`)}</p>
+                  <p className="service-description">{t(`services.${key}.desc`)}</p>
                 </div>
                 
                 <div className="timeline-visual">
@@ -192,12 +196,12 @@ const Services = () => {
         </div>
 
         <div className="services-bridge reveal">
-          <h2 className="bridge-title">¿Cómo se ve esto en la práctica?</h2>
+          <h2 className="bridge-title">{t('services.bridge_title')}</h2>
           <p className="bridge-text">
-            Estas son algunas de las soluciones que desarrollamos para empresas y profesionales de distintos rubros.
+            {t('services.bridge_text')}
           </p>
           <a href="#portfolio" onClick={handleScrollToPortfolio} className="btn btn-primary">
-            Explorar proyectos
+            {t('services.btn_explore')}
           </a>
         </div>
       </div>

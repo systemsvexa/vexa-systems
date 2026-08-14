@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import './Contact.css';
 
 const MapPinIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>;
@@ -6,6 +7,7 @@ const MailIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height
 const PhoneIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2" /><path d="M12 18h.01" /></svg>;
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [status, setStatus] = useState('idle');
   const [errors, setErrors] = useState({});
 
@@ -14,22 +16,22 @@ const Contact = () => {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (!formData.get('nombre').trim()) {
-      newErrors.nombre = 'El nombre es obligatorio';
+      newErrors.nombre = t('contact.validation.name_required');
     }
 
     const email = formData.get('email').trim();
     if (!email) {
-      newErrors.email = 'El correo electrónico es obligatorio';
+      newErrors.email = t('contact.validation.email_required');
     } else if (!emailPattern.test(email)) {
-      newErrors.email = 'Ingresa un correo válido (ej: nombre@ejemplo.com)';
+      newErrors.email = t('contact.validation.email_invalid');
     }
 
     if (!formData.get('servicio_interes')) {
-      newErrors.servicio_interes = 'Por favor selecciona un servicio';
+      newErrors.servicio_interes = t('contact.validation.service_required');
     }
 
     if (!formData.get('mensaje').trim()) {
-      newErrors.mensaje = 'El mensaje no puede estar vacío';
+      newErrors.mensaje = t('contact.validation.message_required');
     }
 
     return newErrors;
@@ -74,14 +76,12 @@ const Contact = () => {
   return (
     <section id="contact" className="section">
       <div className="container">
-        <h2 className="section-title reveal">Contactanos</h2>
+        <h2 className="section-title reveal">{t('contact.title')}</h2>
 
         <div className="contact-wrapper">
           <div className="contact-info reveal delay-1">
-            <h3>Hablemos de tu próximo gran proyecto.</h3>
-            <p>
-              Estamos listos para transformar tus ideas en una realidad digital. Completa el formulario o utiliza nuestros canales de contacto directos.
-            </p>
+            <h3>{t('contact.subtitle')}</h3>
+            <p>{t('contact.text')}</p>
 
             <div className="contact-item">
               <div className="contact-icon"><MapPinIcon /></div>
@@ -94,7 +94,7 @@ const Contact = () => {
             <div className="contact-item">
               <div className="contact-icon"><MailIcon /></div>
               <div>
-                <h4 style={{ marginBottom: '0.2rem' }}>Email</h4>
+                <h4 style={{ marginBottom: '0.2rem' }}>{t('contact.email')}</h4>
                 <span style={{ color: 'var(--color-text-muted)' }}>systemsvexa@gmail.com</span>
               </div>
             </div>
@@ -102,7 +102,7 @@ const Contact = () => {
             <div className="contact-item">
               <div className="contact-icon"><PhoneIcon /></div>
               <div>
-                <h4 style={{ marginBottom: '0.2rem' }}>Teléfono</h4>
+                <h4 style={{ marginBottom: '0.2rem' }}>{t('contact.phone')}</h4>
                 <span style={{ color: 'var(--color-text-muted)' }}>+54 9 3442 588921</span>
               </div>
             </div>
@@ -112,15 +112,15 @@ const Contact = () => {
             {status === 'success' ? (
               <div className="form-success-state">
                 <div className="success-icon-large">✓</div>
-                <h3>¡Mensaje enviado!</h3>
-                <p>Gracias por contactarnos. Te responderemos a la brevedad.</p>
+                <h3>{t('contact.form_success_title')}</h3>
+                <p>{t('contact.form_success_text')}</p>
                 <button
                   type="button"
                   className="btn btn-outline"
                   onClick={() => setStatus('idle')}
                   style={{ width: '100%', marginTop: '1.5rem' }}
                 >
-                  Enviar otro mensaje
+                  {t('contact.btn_send_another')}
                 </button>
               </div>
             ) : (
@@ -130,7 +130,7 @@ const Contact = () => {
                 <input type="hidden" name="_captcha" value="false" />
 
                 <div className="form-group">
-                  <input type="text" name="nombre" className={`form-input ${errors.nombre ? 'has-error' : ''}`} placeholder="Tu Nombre Completo" />
+                  <input type="text" name="nombre" className={`form-input ${errors.nombre ? 'has-error' : ''}`} placeholder={t('contact.form.name_placeholder')} />
                   {errors.nombre && <span className="field-error">{errors.nombre}</span>}
                 </div>
 
@@ -139,36 +139,36 @@ const Contact = () => {
                     type="email"
                     name="email"
                     className={`form-input ${errors.email ? 'has-error' : ''}`}
-                    placeholder="Tu Correo Electrónico"
+                    placeholder={t('contact.form.email_placeholder')}
                   />
                   {errors.email && <span className="field-error">{errors.email}</span>}
                 </div>
 
                 <div className="form-group">
                   <select name="servicio_interes" className={`form-input ${errors.servicio_interes ? 'has-error' : ''}`} defaultValue="">
-                    <option value="" disabled>Selecciona el servicio que te interesa</option>
-                    <option value="E-commerce">E-commerce</option>
-                    <option value="Gestión de Turnos">Gestión de Turnos</option>
-                    <option value="Control de Stock">Control de Stock</option>
-                    <option value="Sistema de pedidos">Sistema de pedidos</option>
-                    <option value="Blog / página de presentación">Blog / página de presentación</option>
-                    <option value="Otro Desarrollo a Medida">Otro Desarrollo a Medida</option>
+                    <option value="" disabled>{t('contact.form.service_default')}</option>
+                    <option value="E-commerce">{t('contact.form.service_ecommerce')}</option>
+                    <option value="Gestión de Turnos">{t('contact.form.service_turnos')}</option>
+                    <option value="Control de Stock">{t('contact.form.service_stock')}</option>
+                    <option value="Sistema de pedidos">{t('contact.form.service_pedidos')}</option>
+                    <option value="Blog / página de presentación">{t('contact.form.service_blog')}</option>
+                    <option value="Otro Desarrollo a Medida">{t('contact.form.service_custom')}</option>
                   </select>
                   {errors.servicio_interes && <span className="field-error">{errors.servicio_interes}</span>}
                 </div>
 
                 <div className="form-group">
-                  <textarea name="mensaje" className={`form-input ${errors.mensaje ? 'has-error' : ''}`} placeholder="Contanos más sobre tu proyecto..."></textarea>
+                  <textarea name="mensaje" className={`form-input ${errors.mensaje ? 'has-error' : ''}`} placeholder={t('contact.form.message_placeholder')}></textarea>
                   {errors.mensaje && <span className="field-error">{errors.mensaje}</span>}
                 </div>
 
                 <button type="submit" className="btn btn-primary" style={{ width: '100%' }} disabled={status === 'submitting'}>
-                  {status === 'submitting' ? 'Enviando...' : 'Enviar Mensaje'}
+                  {status === 'submitting' ? t('contact.form.btn_sending') : t('contact.form.btn_send')}
                 </button>
 
                 {status === 'error' && (
                   <p style={{ color: '#ff4d4f', marginTop: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>
-                    Ocurrió un error al enviar el mensaje. Inténtalo nuevamente.
+                    {t('contact.form.error_general')}
                   </p>
                 )}
               </form>

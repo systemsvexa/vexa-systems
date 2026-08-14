@@ -1,0 +1,124 @@
+{
+  "navbar": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "portfolio": "Portafolio",
+    "about": "Nosotros",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "badge": "Digitalizamos y potenciamos tu negocio",
+    "btn_discover": "Descubrir más"
+  },
+  "problem": {
+    "title": "El crecimiento trae oportunidades. También nuevos desafíos.",
+    "subtitle": "Cada cliente nuevo, cada pedido, cada turno o cada tarea suma complejidad. Cuando los procesos siguen siendo manuales, el crecimiento empieza a jugar en contra.",
+    "card1_title": "Tiempo",
+    "card1_desc": "Encontrar lo que necesitás lleva más tiempo del que debería.",
+    "card2_title": "Trabajo repetitivo",
+    "card2_desc": "Dedicás horas a tareas manuales que podrían automatizarse.",
+    "card3_title": "Falta de control",
+    "card3_desc": "Cuesta saber qué pasa en el negocio cuando la información está desordenada.",
+    "btn_solutions": "Ver nuestras soluciones"
+  },
+  "services": {
+    "title": "No todos los negocios tienen el mismo desafío.",
+    "subtitle": "Por eso desarrollamos soluciones adaptadas a cada necesidad.",
+    "ecommerce": {
+      "title": "E-commerce",
+      "target": "Ideal para comercios que venden online.",
+      "desc": "Tiendas online optimizadas para vender más, con pagos integrados y una experiencia rápida y segura."
+    },
+    "turnos": {
+      "title": "Gestión de turnos",
+      "target": "Ideal para clínicas, consultorios y profesionales.",
+      "desc": "Sistemas inteligentes para automatizar reservas, enviar recordatorios y organizar tu agenda sin esfuerzo."
+    },
+    "stock": {
+      "title": "Control de stock",
+      "target": "Ideal para negocios con inventario.",
+      "desc": "Plataformas precisas para gestionar tus productos, proveedores y flujo de mercadería en tiempo real."
+    },
+    "pedidos": {
+      "title": "Sistemas para pedidos",
+      "target": "Ideal para restaurantes y locales gastronómicos.",
+      "desc": "Aplicaciones web para recibir pedidos directos, menú digital QR y gestión ágil de cocina."
+    },
+    "blogs": {
+      "title": "Blogs",
+      "target": "Ideal para creadores de contenido y marcas.",
+      "desc": "Sitios web autogestionables, optimizados para SEO y diseñados para posicionar tu contenido."
+    },
+    "software": {
+      "title": "Software a medida",
+      "target": "Para empresas con procesos únicos.",
+      "desc": "Desarrollamos la herramienta exacta que tu modelo de negocio necesita para escalar sin límites."
+    },
+    "bridge_title": "¿Cómo se ve esto en la práctica?",
+    "bridge_text": "Estas son algunas de las soluciones que desarrollamos para empresas y profesionales de distintos rubros.",
+    "btn_explore": "Explorar proyectos"
+  },
+  "portfolio": {
+    "title": "Ideas convertidas en soluciones reales.",
+    "subtitle": "Descubrí algunos de los proyectos que desarrollamos para empresas y profesionales, adaptados a las necesidades de cada negocio.",
+    "view_gallery": "Ver galería +",
+    "view_project": "Ver proyecto",
+    "projects": {
+      "bm_desc": "Página web para venta de productos, con carrito de compras, pasarela de pagos y sección favoritos.",
+      "turnos_title": "Gestión de Turnos",
+      "turnos_desc": "Sistema integral de administración de turnos y fichas de pacientes.",
+      "admin_title": "Administración completa para ventas",
+      "admin_desc": "Sistema de gestión de productos, ventas, envíos y clientes."
+    }
+  },
+  "about": {
+    "title": "Sobre Nosotros.",
+    "mission_title": "Nuestra Misión",
+    "mission_p1": "En Vexa Systems somos un equipo de profesionales apasionados por crear soluciones de software que resuelven problemas reales. No solo escribimos código; construimos herramientas que escalan y optimizan los procesos de nuestros clientes.",
+    "mission_p2": "Nuestra filosofía se basa en entender profundamente la necesidad del negocio para luego aplicar la tecnología adecuada. Ya sea una plataforma de ecommerce, un sistema de gestión interno, o una aplicación web compleja. Entregamos calidad premium.",
+    "founders_title": "Fundadores",
+    "role_analyst": "Analista de Sistemas",
+    "send_email": "Enviar correo"
+  },
+  "contact": {
+    "title": "Contactanos",
+    "subtitle": "Hablemos de tu próximo gran proyecto.",
+    "text": "Estamos listos para transformar tus ideas en una realidad digital. Completa el formulario o utiliza nuestros canales de contacto directos.",
+    "location": "Ubicación",
+    "location_value": "Concepción del Uruguay, Entre Rios, Argentina",
+    "email": "Email",
+    "phone": "Teléfono",
+    "form_success_title": "¡Mensaje enviado!",
+    "form_success_text": "Gracias por contactarnos. Te responderemos a la brevedad.",
+    "btn_send_another": "Enviar otro mensaje",
+    "form": {
+      "name_placeholder": "Tu Nombre Completo",
+      "email_placeholder": "Tu Correo Electrónico",
+      "service_default": "Selecciona el servicio que te interesa",
+      "service_ecommerce": "E-commerce",
+      "service_turnos": "Gestión de Turnos",
+      "service_stock": "Control de Stock",
+      "service_pedidos": "Sistema de pedidos",
+      "service_blog": "Blog / página de presentación",
+      "service_custom": "Otro Desarrollo a Medida",
+      "message_placeholder": "Contanos más sobre tu proyecto...",
+      "btn_sending": "Enviando...",
+      "btn_send": "Enviar Mensaje",
+      "error_general": "Ocurrió un error al enviar el mensaje. Inténtalo nuevamente."
+    },
+    "validation": {
+      "name_required": "El nombre es obligatorio",
+      "email_required": "El correo electrónico es obligatorio",
+      "email_invalid": "Ingresa un correo válido (ej: nombre@ejemplo.com)",
+      "service_required": "Por favor selecciona un servicio",
+      "message_required": "El mensaje no puede estar vacío"
+    }
+  },
+  "footer": {
+    "desc": "Impulsando negocios con soluciones de software innovadoras, robustas y diseñadas a medida para el éxito en el mundo digital. Desde 2026.",
+    "nav_title": "NAVEGACIÓN",
+    "contact_title": "CONTACTO",
+    "copyright": "Copyright © {{year}} Vexa Systems. Todos los derechos reservados.",
+    "developed_by": "DESARROLLADO POR"
+  }
+}

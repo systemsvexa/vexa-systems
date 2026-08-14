@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import './Footer.css';
 import vexaLogo from '../assets/vexa_logo_transparent.png';
 
@@ -9,6 +10,8 @@ const MailIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height
 const PhoneIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2" /><path d="M12 18h.01" /></svg>;
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="footer">
       <div className="container">
@@ -19,8 +22,7 @@ const Footer = () => {
               <span className="footer-logo-text"><span className="logo-v">VEXA</span> <span style={{ fontWeight: 700, letterSpacing: '-0.02em' }}>SYSTEMS</span></span>
             </a>
             <p className="footer-desc">
-              Impulsando negocios con soluciones de software innovadoras,
-              robustas y diseñadas a medida para el éxito en el mundo digital.
+              {t('footer.desc')}
             </p>
             <div className="footer-social">
               <a href="https://www.instagram.com/vexa.systems/" target="_blank" rel="noopener noreferrer" className="social-icon"><InstagramIcon /></a>
@@ -29,18 +31,18 @@ const Footer = () => {
           </div>
 
           <div className="footer-col reveal delay-1">
-            <h4>NAVEGACIÓN</h4>
+            <h4>{t('footer.nav_title')}</h4>
             <ul>
-              <li><a href="#home">Inicio</a></li>
-              <li><a href="#services">Servicios</a></li>
-              <li><a href="#portfolio">Portafolio</a></li>
-              <li><a href="#about">Nosotros</a></li>
-              <li><a href="#contact">Contacto</a></li>
+              <li><a href="#home">{t('navbar.home')}</a></li>
+              <li><a href="#services">{t('navbar.services')}</a></li>
+              <li><a href="#portfolio">{t('navbar.portfolio')}</a></li>
+              <li><a href="#about">{t('navbar.about')}</a></li>
+              <li><a href="#contact">{t('navbar.contact')}</a></li>
             </ul>
           </div>
 
           <div className="footer-col reveal delay-2">
-            <h4>CONTACTO</h4>
+            <h4>{t('footer.contact_title')}</h4>
             <ul>
               <li className="contact-li">
                 <span className="contact-li-icon"><MapPinIcon /></span>
@@ -59,9 +61,9 @@ const Footer = () => {
         </div>
 
         <div className="footer-bottom reveal delay-1">
-          <p>Copyright &copy; {new Date().getFullYear()} Vexa Systems. Todos los derechos reservados.</p>
+          <p>{t('footer.copyright', { year: new Date().getFullYear() })}</p>
           <div className="footer-developed">
-            <span>DESARROLLADO POR</span>
+            <span>{t('footer.developed_by')}</span>
             <img src={vexaLogo} alt="Vexa" className="footer-developed-logo" />
           </div>
         </div>

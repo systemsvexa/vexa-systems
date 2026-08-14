@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import './Portfolio.css';
 
 import bm01 from '../assets/bloquemundo_01.png';
@@ -49,6 +50,7 @@ const projects = [
 ];
 
 const Portfolio = () => {
+  const { t } = useTranslation();
   const [activeProject, setActiveProject] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
@@ -92,9 +94,9 @@ const Portfolio = () => {
     <section id="portfolio" className="section portfolio-section">
       <div className="container">
         <div className="portfolio-header reveal">
-          <h2 className="section-title">Ideas convertidas en soluciones reales.</h2>
+          <h2 className="section-title">{t('portfolio.title')}</h2>
           <p className="portfolio-subtitle">
-            Descubrí algunos de los proyectos que desarrollamos para empresas y profesionales, adaptados a las necesidades de cada negocio.
+            {t('portfolio.subtitle')}
           </p>
         </div>
 
@@ -109,13 +111,15 @@ const Portfolio = () => {
               >
                 <img src={project.image} alt={project.title} className="portfolio-image" />
                 <div className="portfolio-image-overlay">
-                  <span>Ver galería +</span>
+                  <span>{t('portfolio.view_gallery')}</span>
                 </div>
               </div>
               <div className="portfolio-content">
                 <span className="portfolio-category">{project.category}</span>
-                <h3 className="portfolio-title">{project.title}</h3>
-                <p className="portfolio-description">{project.description}</p>
+                <h3 className="portfolio-title">{index === 0 ? 'E-commerce' : index === 1 ? t('portfolio.projects.turnos_title') : t('portfolio.projects.admin_title')}</h3>
+                <p className="portfolio-description">
+                  {index === 0 ? t('portfolio.projects.bm_desc') : index === 1 ? t('portfolio.projects.turnos_desc') : t('portfolio.projects.admin_desc')}
+                </p>
                 {project.link && (
                   <a
                     href={project.link}
@@ -123,7 +127,7 @@ const Portfolio = () => {
                     rel="noopener noreferrer"
                     className="portfolio-link"
                   >
-                    Ver proyecto &rarr;
+                    {t('portfolio.view_project')} &rarr;
                   </a>
                 )}
               </div>
@@ -174,7 +178,7 @@ const Portfolio = () => {
             </div>
 
             <div className="modal-info">
-              <h3>{activeProject.title}</h3>
+              <h3>{activeProject.id === 2 || activeProject.title === 'Administración completa para ventas' ? t('portfolio.projects.admin_title') : activeProject.title === 'Gestión de Turnos' ? t('portfolio.projects.turnos_title') : activeProject.title}</h3>
               <p>{activeProject.category}</p>
             </div>
           </div>
