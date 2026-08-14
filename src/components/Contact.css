@@ -158,3 +158,12 @@ textarea.form-input {
     padding: 3rem;
   }
 }
+
+@media (max-width: 768px) {
+  .contact-form {
+    padding: 2rem 1.5rem;
+  }
+  .contact-info {
+    padding: 2rem 1.5rem;
+  }
+}

@@ -47,7 +47,7 @@
     "blogs": {
       "title": "Blogs",
       "target": "Ideal for content creators and brands.",
-      "desc": "Self-manageable websites, optimized for SEO and designed to rank your content."
+      "desc": "Self-manageable websites, built to rank high on Google and attract more readers."
     },
     "software": {
       "title": "Custom software",
@@ -82,7 +82,7 @@
   },
   "contact": {
     "title": "Contact Us",
-    "subtitle": "Let's talk about your next big project.",
+    "subtitle": "Let's talk about your next project.",
     "text": "We are ready to transform your ideas into a digital reality. Fill out the form or use our direct contact channels.",
     "location": "Location",
     "location_value": "Concepción del Uruguay, Entre Rios, Argentina",

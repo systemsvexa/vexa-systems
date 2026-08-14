@@ -55,6 +55,34 @@ const Services = () => {
   const timelineRef = useRef(null);
   const itemRefs = useRef([]);
 
+  const handleScrollToPortfolio = (e) => {
+    e.preventDefault();
+    const target = document.getElementById('portfolio');
+    if (target) {
+      const startPosition = window.pageYOffset;
+      const targetPosition = target.getBoundingClientRect().top - 76;
+      const startTime = performance.now();
+      const duration = 1200;
+
+      const scrollAnimation = (currentTime) => {
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        
+        const ease = progress < 0.5 
+          ? 4 * Math.pow(progress, 3) 
+          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+        window.scrollTo(0, startPosition + targetPosition * ease);
+
+        if (timeElapsed < duration) {
+          requestAnimationFrame(scrollAnimation);
+        }
+      };
+
+      requestAnimationFrame(scrollAnimation);
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       if (!timelineRef.current) return;
@@ -84,6 +112,7 @@ const Services = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
     
     // Llamar un par de veces al inicio para asegurar que los elementos ya están renderizados
     handleScroll();
@@ -92,55 +121,33 @@ const Services = () => {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
     };
   }, []);
 
-  // Cuando cambia el ítem activo, movemos la barra EXACTAMENTE a su centro
+  // Cuando cambia el ítem activo o el tamaño de la ventana, movemos la barra EXACTAMENTE a su centro
   useEffect(() => {
-    const el = itemRefs.current[activeIndex];
-    if (el && timelineRef.current) {
-      // En lugar de calcular el centro del ítem, buscamos el nodo exacto
-      const nodeEl = el.querySelector('.timeline-node');
-      
-      if (nodeEl) {
-        // Obtenemos la posición exacta del nodo relativa al contenedor de la línea
-        const containerRect = timelineRef.current.getBoundingClientRect();
-        const nodeRect = nodeEl.getBoundingClientRect();
-        
-        // Distancia desde el tope del contenedor hasta el centro del nodo
-        const targetPx = (nodeRect.top - containerRect.top) + (nodeRect.height / 2);
-        setProgressPx(targetPx);
-      } else {
-        // Fallback por si no encuentra el nodo
-        const targetPx = el.offsetTop + (el.offsetHeight / 2);
-        setProgressPx(targetPx);
+    const updateProgress = () => {
+      const el = itemRefs.current[activeIndex];
+      if (el && timelineRef.current) {
+        const nodeEl = el.querySelector('.timeline-node');
+        if (nodeEl) {
+          const containerRect = timelineRef.current.getBoundingClientRect();
+          const nodeRect = nodeEl.getBoundingClientRect();
+          const targetPx = (nodeRect.top - containerRect.top) + (nodeRect.height / 2);
+          setProgressPx(targetPx);
+        } else {
+          const targetPx = el.offsetTop + (el.offsetHeight / 2);
+          setProgressPx(targetPx);
+        }
       }
-    }
+    };
+
+    updateProgress();
+    window.addEventListener('resize', updateProgress);
+    return () => window.removeEventListener('resize', updateProgress);
   }, [activeIndex]);
 
-  const handleScrollToPortfolio = (e) => {
-    e.preventDefault();
-    const target = document.getElementById('portfolio');
-    if (target) {
-      const startPosition = window.pageYOffset;
-      const targetPosition = target.getBoundingClientRect().top;
-      const startTime = performance.now();
-      const duration = 1200;
-
-      const scrollAnimation = (currentTime) => {
-        const timeElapsed = currentTime - startTime;
-        const progress = Math.min(timeElapsed / duration, 1);
-        const ease = progress < 0.5 
-          ? 4 * progress * progress * progress 
-          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-        window.scrollTo(0, startPosition + targetPosition * ease);
-        if (timeElapsed < duration) {
-          requestAnimationFrame(scrollAnimation);
-        }
-      };
-      requestAnimationFrame(scrollAnimation);
-    }
-  };
 
   return (
     <section id="services" className="section services-section">

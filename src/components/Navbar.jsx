@@ -5,7 +5,11 @@ import './Navbar.css';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t, i18n } = useTranslation();
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
 
   const toggleLanguage = () => {
     const newLang = i18n.language.startsWith('es') ? 'en' : 'es';
@@ -27,24 +31,30 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${scrolled || isMenuOpen ? 'scrolled' : ''} ${isMenuOpen ? 'menu-open' : ''}`}>
       <div className="container navbar-container">
         <a href="#home" className="navbar-logo">
           <img src={vexaLogo} alt="Vexa Logo" className="navbar-logo-img" />
           <span className="navbar-logo-text"><span className="logo-v">VEXA</span> <span style={{fontWeight: 700, letterSpacing: '-0.02em'}}>SYSTEMS</span></span>
         </a>
-        <div className="navbar-links">
-          <a href="#home" className="nav-link">{t('navbar.home')}</a>
-          <a href="#services" className="nav-link">{t('navbar.services')}</a>
-          <a href="#portfolio" className="nav-link">{t('navbar.portfolio')}</a>
-          <a href="#about" className="nav-link">{t('navbar.about')}</a>
-          <a href="#contact" className="nav-link">{t('navbar.contact')}</a>
+        <div className="navbar-right">
+          <div className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
+            <a href="#home" className="nav-link" onClick={closeMenu}>{t('navbar.home')}</a>
+            <a href="#services" className="nav-link" onClick={closeMenu}>{t('navbar.services')}</a>
+            <a href="#portfolio" className="nav-link" onClick={closeMenu}>{t('navbar.portfolio')}</a>
+            <a href="#about" className="nav-link" onClick={closeMenu}>{t('navbar.about')}</a>
+            <a href="#contact" className="nav-link" onClick={closeMenu}>{t('navbar.contact')}</a>
+          </div>
           
-          <button className="lang-switcher" onClick={toggleLanguage} aria-label="Cambiar idioma">
-            {i18n.language.startsWith('es') ? 'EN' : 'ES'}
-          </button>
+          <div className="navbar-controls">
+            <button className="lang-switcher" onClick={toggleLanguage} aria-label="Cambiar idioma">
+              {i18n.language.startsWith('es') ? 'EN' : 'ES'}
+            </button>
+            <button className="mobile-menu-btn" onClick={toggleMenu}>
+              {isMenuOpen ? '✕' : '☰'}
+            </button>
+          </div>
         </div>
-        <button className="mobile-menu-btn">☰</button>
       </div>
     </nav>
   );

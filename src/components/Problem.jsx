@@ -10,16 +10,16 @@ const Problem = () => {
     const target = document.getElementById('services');
     if (target) {
       const startPosition = window.pageYOffset;
-      const targetPosition = target.getBoundingClientRect().top;
+      const targetPosition = target.getBoundingClientRect().top - 76;
       const startTime = performance.now();
-      const duration = 1200; // 1.2 seconds for a slow, cinematic scroll
+      const duration = 1200;
 
       const scrollAnimation = (currentTime) => {
         const timeElapsed = currentTime - startTime;
         const progress = Math.min(timeElapsed / duration, 1);
-
-        const ease = progress < 0.5
-          ? 4 * progress * progress * progress
+        
+        const ease = progress < 0.5 
+          ? 4 * Math.pow(progress, 3) 
           : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
         window.scrollTo(0, startPosition + targetPosition * ease);

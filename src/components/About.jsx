@@ -29,29 +29,29 @@ const About = () => {
           <div className="team-photo-container reveal delay-2">
             <div className={`team-photo-wrapper ${hoveredFounder ? 'has-hover' : ''}`}>
               <img src={aboutImg} alt="Equipo Vexa Systems" className="team-photo-img base-img" />
-              
+
               {/* Imágenes resaltadas */}
-              <img 
-                src={imgValentino} 
-                alt="Valentino destacado" 
-                className={`team-photo-img highlight-img ${hoveredFounder === 'benedetti' ? 'active' : ''}`} 
+              <img
+                src={imgValentino}
+                alt="Valentino destacado"
+                className={`team-photo-img highlight-img ${hoveredFounder === 'benedetti' ? 'active' : ''}`}
               />
-              <img 
-                src={imgSaenz} 
-                alt="Juan Saenz destacado" 
-                className={`team-photo-img highlight-img ${hoveredFounder === 'saenz' ? 'active' : ''}`} 
+              <img
+                src={imgSaenz}
+                alt="Juan Saenz destacado"
+                className={`team-photo-img highlight-img ${hoveredFounder === 'saenz' ? 'active' : ''}`}
               />
-              <img 
-                src={imgNievas} 
-                alt="Juan Nievas destacado" 
-                className={`team-photo-img highlight-img ${hoveredFounder === 'nievas' ? 'active' : ''}`} 
+              <img
+                src={imgNievas}
+                alt="Juan Nievas destacado"
+                className={`team-photo-img highlight-img ${hoveredFounder === 'nievas' ? 'active' : ''}`}
               />
             </div>
           </div>
 
           <div className="founders-list reveal delay-3" style={{ marginTop: 0 }}>
             <h4 className="founders-title">{t('about.founders_title')}</h4>
-            <div 
+            <div
               className="founder-item"
               onMouseEnter={() => setHoveredFounder('benedetti')}
               onMouseLeave={() => setHoveredFounder(null)}
@@ -70,7 +70,7 @@ const About = () => {
                 </a>
               </div>
             </div>
-            <div 
+            <div
               className="founder-item"
               onMouseEnter={() => setHoveredFounder('nievas')}
               onMouseLeave={() => setHoveredFounder(null)}
@@ -84,12 +84,12 @@ const About = () => {
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=juannievas15@gmail.com" target="_blank" rel="noopener noreferrer" className="founder-mail-btn">
                   <MailIcon /> {t('about.send_email')}
                 </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="founder-linkedin-btn">
+                <a href="https://www.linkedin.com/in/juanjos%C3%A9nievas/" target="_blank" rel="noopener noreferrer" className="founder-linkedin-btn">
                   <LinkedInIcon />
                 </a>
               </div>
             </div>
-            <div 
+            <div
               className="founder-item"
               onMouseEnter={() => setHoveredFounder('saenz')}
               onMouseLeave={() => setHoveredFounder(null)}
@@ -103,7 +103,7 @@ const About = () => {
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=juannsaenzz17@gmail.com" target="_blank" rel="noopener noreferrer" className="founder-mail-btn">
                   <MailIcon /> {t('about.send_email')}
                 </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="founder-linkedin-btn">
+                <a href="https://www.linkedin.com/in/juannsaenzz/" target="_blank" rel="noopener noreferrer" className="founder-linkedin-btn">
                   <LinkedInIcon />
                 </a>
               </div>

@@ -47,7 +47,7 @@
     "blogs": {
       "title": "Blogs",
       "target": "Ideal para creadores de contenido y marcas.",
-      "desc": "Sitios web autogestionables, optimizados para SEO y diseñados para posicionar tu contenido."
+      "desc": "Sitios web autogestionables, preparados para aparecer en los primeros resultados de Google y atraer más lectores."
     },
     "software": {
       "title": "Software a medida",
@@ -82,7 +82,7 @@
   },
   "contact": {
     "title": "Contactanos",
-    "subtitle": "Hablemos de tu próximo gran proyecto.",
+    "subtitle": "Hablemos de tu próximo proyecto.",
     "text": "Estamos listos para transformar tus ideas en una realidad digital. Completa el formulario o utiliza nuestros canales de contacto directos.",
     "location": "Ubicación",
     "location_value": "Concepción del Uruguay, Entre Rios, Argentina",
