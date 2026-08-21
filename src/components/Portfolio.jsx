@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import './Portfolio.css';
 
 import bm01 from '../assets/bloquemundo_01.png';
@@ -24,6 +23,30 @@ import turnos03 from '../assets/turnos_03.png';
 import turnos04 from '../assets/turnos_04.png';
 import turnos05 from '../assets/turnos_05.png';
 
+import bm01_mob from '../assets/bloquemundo_01_responsive.png';
+import bm02_mob from '../assets/bloquemundo_02_responsive.png';
+import bm03_mob from '../assets/bloquemundo_03_responsive.png';
+import bm04_mob from '../assets/bloquemundo_04_responsive.png';
+import bm05_mob from '../assets/bloquemundo_05_responsive.png';
+import bm06_mob from '../assets/bloquemundo_06_responsive.png';
+import bm07_mob from '../assets/bloquemundo_07_responsive.png';
+import bm08_mob from '../assets/bloquemundo_08_responsive.png';
+
+import admin01_mob from '../assets/admin_01_responsive.png';
+import admin02_mob from '../assets/admin_02_responsive.png';
+import admin03_mob from '../assets/admin_03_responsive.png';
+import admin04_mob from '../assets/admin_04_responsive.png';
+import admin05_mob from '../assets/admin_05_responsive.png';
+import admin06_mob from '../assets/admin_06_responsive.png';
+import admin07_mob from '../assets/admin_07_responsive.png';
+import admin08_mob from '../assets/admin_08_responsive.png';
+
+import turnos01_mob from '../assets/turnos_01_responsive.png';
+import turnos02_mob from '../assets/turnos_02_responsive.png';
+import turnos03_mob from '../assets/turnos_03_responsive.png';
+import turnos04_mob from '../assets/turnos_04_responsive.png';
+import turnos05_mob from '../assets/turnos_05_responsive.png';
+
 const projects = [
   {
     title: 'E-commerce',
@@ -31,6 +54,7 @@ const projects = [
     description: 'Página web para venta de productos, con carrito de compras, pasarela de pagos y sección favoritos.',
     image: bm01,
     gallery: [bm01, bm02, bm03, bm04, bm05, bm06, bm07, bm08],
+    mobileGallery: [bm01_mob, bm02_mob, bm03_mob, bm04_mob, bm05_mob, bm06_mob, bm07_mob, bm08_mob],
     link: 'https://bloquemundo.vercel.app/'
   },
   {
@@ -38,21 +62,33 @@ const projects = [
     category: 'Centro Quiropráctico Nicolás',
     description: 'Sistema integral de administración de turnos y fichas de pacientes.',
     image: turnos01,
-    gallery: [turnos01, turnos02, turnos03, turnos04, turnos05]
+    gallery: [turnos01, turnos02, turnos03, turnos04, turnos05],
+    mobileGallery: [turnos01_mob, turnos02_mob, turnos03_mob, turnos04_mob, turnos05_mob]
   },
   {
     title: 'Administración completa para ventas',
     category: 'Bloque Mundo',
     description: 'Sistema de gestión de productos, ventas, envíos y clientes.',
     image: admin01,
-    gallery: [admin01, admin02, admin03, admin04, admin05, admin06]
+    gallery: [admin01, admin02, admin03, admin04, admin05, admin06],
+    mobileGallery: [admin01_mob, admin02_mob, admin03_mob, admin04_mob, admin05_mob, admin06_mob, admin07_mob, admin08_mob]
   }
 ];
 
 const Portfolio = () => {
-  const { t } = useTranslation();
   const [activeProject, setActiveProject] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const currentGallery = activeProject 
+    ? (isMobile && activeProject.mobileGallery ? activeProject.mobileGallery : activeProject.gallery) 
+    : [];
 
   const openModal = (project, index = 0) => {
     setActiveProject(project);
@@ -68,14 +104,14 @@ const Portfolio = () => {
   const nextImage = (e) => {
     e.stopPropagation();
     if (activeProject) {
-      setActiveImageIndex((prev) => (prev === activeProject.gallery.length - 1 ? 0 : prev + 1));
+      setActiveImageIndex((prev) => (prev === currentGallery.length - 1 ? 0 : prev + 1));
     }
   };
 
   const prevImage = (e) => {
     e.stopPropagation();
     if (activeProject) {
-      setActiveImageIndex((prev) => (prev === 0 ? activeProject.gallery.length - 1 : prev - 1));
+      setActiveImageIndex((prev) => (prev === 0 ? currentGallery.length - 1 : prev - 1));
     }
   };
 
@@ -94,9 +130,9 @@ const Portfolio = () => {
     <section id="portfolio" className="section portfolio-section">
       <div className="container">
         <div className="portfolio-header reveal">
-          <h2 className="section-title">{t('portfolio.title')}</h2>
+          <h2 className="section-title">Ideas convertidas en soluciones reales.</h2>
           <p className="portfolio-subtitle">
-            {t('portfolio.subtitle')}
+            Descubrí algunos de los proyectos que desarrollamos para empresas y profesionales, adaptados a las necesidades de cada negocio.
           </p>
         </div>
 
@@ -111,7 +147,7 @@ const Portfolio = () => {
               >
                 <img src={project.image} alt={project.title} className="portfolio-image" />
                 <div className="portfolio-image-overlay">
-                  <span>{t('portfolio.view_gallery')}</span>
+                  <span>Ver galería +</span>
                 </div>
                 <div className="mobile-gallery-badge">
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -119,14 +155,14 @@ const Portfolio = () => {
                     <circle cx="8.5" cy="8.5" r="1.5"/>
                     <polyline points="21 15 16 10 5 21"/>
                   </svg>
-                  <span>1 / {project.gallery.length}</span>
+                  <span>1 / {isMobile && project.mobileGallery ? project.mobileGallery.length : project.gallery.length}</span>
                 </div>
               </div>
               <div className="portfolio-content">
                 <span className="portfolio-category">{project.category}</span>
-                <h3 className="portfolio-title">{index === 0 ? 'E-commerce' : index === 1 ? t('portfolio.projects.turnos_title') : t('portfolio.projects.admin_title')}</h3>
+                <h3 className="portfolio-title">{project.title}</h3>
                 <p className="portfolio-description">
-                  {index === 0 ? t('portfolio.projects.bm_desc') : index === 1 ? t('portfolio.projects.turnos_desc') : t('portfolio.projects.admin_desc')}
+                  {project.description}
                 </p>
                 {project.link && (
                   <a
@@ -135,7 +171,7 @@ const Portfolio = () => {
                     rel="noopener noreferrer"
                     className="portfolio-link"
                   >
-                    {t('portfolio.view_project')} &rarr;
+                    Ver proyecto &rarr;
                   </a>
                 )}
               </div>
@@ -154,7 +190,7 @@ const Portfolio = () => {
               </svg>
             </button>
             <div className="modal-gallery-main">
-              {activeProject.gallery.length > 1 && (
+              {currentGallery.length > 1 && (
                 <button className="gallery-nav-btn prev" onClick={prevImage}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="15 18 9 12 15 6"></polyline>
@@ -162,10 +198,10 @@ const Portfolio = () => {
                 </button>
               )}
               <img
-                src={activeProject.gallery[activeImageIndex]}
+                src={currentGallery[activeImageIndex]}
                 alt={`${activeProject.title} vista ${activeImageIndex + 1}`}
               />
-              {activeProject.gallery.length > 1 && (
+              {currentGallery.length > 1 && (
                 <button className="gallery-nav-btn next" onClick={nextImage}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="9 18 15 12 9 6"></polyline>
@@ -173,9 +209,9 @@ const Portfolio = () => {
                 </button>
               )}
 
-              {activeProject.gallery.length > 1 && (
+              {currentGallery.length > 1 && (
                 <div className="gallery-dots">
-                  {activeProject.gallery.map((_, idx) => (
+                  {currentGallery.map((_, idx) => (
                     <span
                       key={idx}
                       className={`gallery-dot ${idx === activeImageIndex ? 'active' : ''}`}
@@ -187,7 +223,7 @@ const Portfolio = () => {
             </div>
 
             <div className="modal-gallery-thumbnails">
-              {activeProject.gallery.map((img, idx) => (
+              {currentGallery.map((img, idx) => (
                 <div
                   key={idx}
                   className={`modal-thumbnail ${idx === activeImageIndex ? 'active' : ''}`}
@@ -199,7 +235,7 @@ const Portfolio = () => {
             </div>
 
             <div className="modal-info">
-              <h3>{activeProject.id === 2 || activeProject.title === 'Administración completa para ventas' ? t('portfolio.projects.admin_title') : activeProject.title === 'Gestión de Turnos' ? t('portfolio.projects.turnos_title') : activeProject.title}</h3>
+              <h3>{activeProject.title}</h3>
               <p>{activeProject.category}</p>
             </div>
           </div>

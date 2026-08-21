@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import './About.css';
 import vexaLogo from '../assets/vexa_logo_transparent.png';
 import aboutImg from '../assets/about.jpeg';
@@ -12,17 +11,16 @@ const LinkedInIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" he
 
 const About = () => {
   const [hoveredFounder, setHoveredFounder] = useState(null);
-  const { t } = useTranslation();
 
   return (
     <section id="about" className="section">
       <div className="container">
-        <h2 className="section-title reveal">{t('about.title')}</h2>
+        <h2 className="section-title reveal">Sobre Nosotros.</h2>
 
         <div className="about-text-center reveal delay-1">
-          <h3>{t('about.mission_title')}</h3>
-          <p>{t('about.mission_p1')}</p>
-          <p>{t('about.mission_p2')}</p>
+          <h3>Nuestra Misión</h3>
+          <p>En Vexa Systems somos un equipo de profesionales apasionados por crear soluciones de software que resuelven problemas reales. No solo escribimos código; construimos herramientas que escalan y optimizan los procesos de nuestros clientes.</p>
+          <p>Nuestra filosofía se basa en entender profundamente la necesidad del negocio para luego aplicar la tecnología adecuada. Ya sea una plataforma de ecommerce, un sistema de gestión interno, o una aplicación web compleja. Entregamos calidad premium.</p>
         </div>
 
         <div className="about-content">
@@ -50,7 +48,7 @@ const About = () => {
           </div>
 
           <div className="founders-list reveal delay-3" style={{ marginTop: 0 }}>
-            <h4 className="founders-title">{t('about.founders_title')}</h4>
+            <h4 className="founders-title">Fundadores</h4>
             <div
               className="founder-item"
               onMouseEnter={() => setHoveredFounder('benedetti')}
@@ -59,11 +57,11 @@ const About = () => {
               <div className="founder-photo-placeholder"></div>
               <div className="founder-info">
                 <span className="founder-name">Valentino Benedetti</span>
-                <span className="founder-role">{t('about.role_analyst')}</span>
+                <span className="founder-role">Analista de Sistemas</span>
               </div>
               <div className="founder-actions">
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=valentinobenedetti9@gmail.com" target="_blank" rel="noopener noreferrer" className="founder-mail-btn">
-                  <MailIcon /> {t('about.send_email')}
+                  <MailIcon /> Enviar correo
                 </a>
                 <a href="#" target="_blank" rel="noopener noreferrer" className="founder-linkedin-btn">
                   <LinkedInIcon />
@@ -78,11 +76,11 @@ const About = () => {
               <div className="founder-photo-placeholder"></div>
               <div className="founder-info">
                 <span className="founder-name">Juan Nievas</span>
-                <span className="founder-role">{t('about.role_analyst')}</span>
+                <span className="founder-role">Analista de Sistemas</span>
               </div>
               <div className="founder-actions">
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=juannievas15@gmail.com" target="_blank" rel="noopener noreferrer" className="founder-mail-btn">
-                  <MailIcon /> {t('about.send_email')}
+                  <MailIcon /> Enviar correo
                 </a>
                 <a href="https://www.linkedin.com/in/juanjos%C3%A9nievas/" target="_blank" rel="noopener noreferrer" className="founder-linkedin-btn">
                   <LinkedInIcon />
@@ -97,11 +95,11 @@ const About = () => {
               <div className="founder-photo-placeholder"></div>
               <div className="founder-info">
                 <span className="founder-name">Juan Saenz</span>
-                <span className="founder-role">{t('about.role_analyst')}</span>
+                <span className="founder-role">Analista de Sistemas</span>
               </div>
               <div className="founder-actions">
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=juannsaenzz17@gmail.com" target="_blank" rel="noopener noreferrer" className="founder-mail-btn">
-                  <MailIcon /> {t('about.send_email')}
+                  <MailIcon /> Enviar correo
                 </a>
                 <a href="https://www.linkedin.com/in/juannsaenzz/" target="_blank" rel="noopener noreferrer" className="founder-linkedin-btn">
                   <LinkedInIcon />

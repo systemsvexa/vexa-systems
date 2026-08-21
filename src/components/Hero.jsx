@@ -1,9 +1,7 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import './Hero.css';
 
 const Hero = () => {
-  const { t } = useTranslation();
 
   const handleScrollDown = (e) => {
     e.preventDefault();
@@ -45,7 +43,7 @@ return (
       <div className="hero-content">
 
         <div className="hero-badge">
-          {t('hero.badge')}
+          Digitalizamos y potenciamos tu negocio
         </div>
 
         <h1 className="hero-title">
@@ -56,7 +54,7 @@ return (
 
         <div className="hero-buttons">
           <a href="#problem" onClick={handleScrollDown} className="btn btn-primary btn-glow">
-            {t('hero.btn_discover')}
+            Descubrir más
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="bounce-arrow" style={{ marginLeft: '8px' }}>
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
